@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Chat-App</title>
+  <link rel="icon" href="/img/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body class=" text-white container" style="background-color: #55476b;">
+  <h1 class="text-center my-5 py-3" style="background-color: #1e1825;">Chat-app</h1>
+
+  <div class="chat row">
+    <div id="sidebar" class="chat-sidebar w-25 mr-4 col-4" style="background-color: #343146;">
+      
+    </div>
+
+    <div class="chat-main text-black-50 w-50 overflow-auto p-3 col" style=" background-color :#c9b8e3; height: 500px!important;">
+      
+
+      <div class="compose">
+        <div id="messages" class="mt-5" ></div>
+        <div class="form-division">
+          <form id="message-form" class="mt-5" >
+
+            <div class="form-group">
+              <p for="messageBox" style="color: #1e1825; clear: both;">Enter your message here</p>
+              <input type="text" class="form-control" name="message" id="messageBox" aria-describedby="emailHelp" />
+            </div>
+  
+            <button type="submit" class="btn btn-success" style="background-color: #1e1825;"> Send a message </button>
+  
+            <button type="submit" class="btn btn-primary" id="send-location" style="background-color: #1e1825;"> Send your location </button>
+  
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <script id="message-template" type="text/html">
+      <div class="alert alert-light float-left" style="width: fit-content; color: #1e1825; clear: both;">
+        <p>
+          <span class="font-weight-bold h5">{{username}}</span>
+          <span>{{createdAt}}</span>
+        </p>
+        <p>{{message}}</p>
+      </div>
+    </script>
+
+    <script id="message-other-template" type="text/html">
+      <div class="alert alert-danger float-right" style="width: fit-content; color: #1e1825; clear: both;">
+        <p>
+          <span class="font-weight-bold h5">{{username}}</span>
+          <span>{{createdAt}}</span>
+        </p>
+        <p>{{message}}</p>
+      </div>
+    </script>
+
+  <script id="location-message-template" type="text/html">
+      <div class="alert alert-light float-left" style="width: fit-content; color: #1e1825; clear: both;">
+        <p>
+          <span class="font-weight-bold h5">{{username}}</span>
+          <span>{{createdAt}}</span>
+        </p>
+        <p>
+          <a href="{{url}}" target="_blank">your location</a>
+        </p>
+      </div>
+    </script>
+
+    <script id="location-message-template-others" type="text/html">
+      <div class="alert alert-danger float-right" style="width: fit-content; color: #1e1825; clear: both;">
+        <p>
+          <span class="font-weight-bold h5">{{username}}</span>
+          <span>{{createdAt}}</span>
+        </p>
+        <p>
+          <a href="{{url}}" target="_blank">{{username}}'s location</a>
+        </p>
+      </div>
+    </script>
+
+    <script id="sidebar-template" type="text/html">
+      <h2 class="room-title text-center my-3 py-2" style="background-color: #1e1825;">{{room}}</h2>
+      <h3 class="list-title">Users</h3>
+      <ul class="users">
+        {{#users}}
+          <li>{{username}}</li>
+        {{/users}}
+      </ul>
+    </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>  
+    <!-- this script will provide all the libraries connection to the client side server -->
+  <script src="socket.io/socket.io.js"></script>
+  <script src="./js/chat.js"></script>
+</body>
+
+</html>
